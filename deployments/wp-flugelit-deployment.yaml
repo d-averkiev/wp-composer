@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: wp-flugelit
+  labels:
+    app: wp-flugelit
+spec:
+  selector:
+    matchLabels:
+      app: wp-flugelit
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wp-flugelit
+        tier: frontend
+    spec:
+      containers:
+      - image: us.gcr.io/upandrunning-195715/wp-flugelit:0.4
+        name: wp-flugelit
+        env:
+        - name: WORDPRESS_DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: wp-flugelit
+              key: db_host
+        - name: WORDPRESS_DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: wp-flugelit
+              key: db_name
+        - name: WORDPRESS_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: wp-flugelit
+              key: user
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wp-flugelit
+              key: password
+        ports:
+        - containerPort: 80
+          name: wp-flugelit

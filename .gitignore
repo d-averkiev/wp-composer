@@ -1,6 +1,11 @@
+#Editors
+*.swp
+*.swo
 .idea/
+#WP
 /vendor/
 /public/wp/
+/public/wp-content/*
 local-config.php
 production-config.php
-/public/wp-content/uploads/
+!/public/wp-content/uploads/
