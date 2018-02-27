@@ -19,7 +19,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: us.gcr.io/upandrunning-195715/wp-flugelit:0.4
+      - image: us.gcr.io/flugelprod/wp-flugelit:0.4
         name: wp-flugelit
         env:
         - name: WORDPRESS_DB_HOST
@@ -45,3 +45,21 @@ spec:
         ports:
         - containerPort: 80
           name: wp-flugelit
+# Uncomment below if inter-container workdir sharing needed
+#        volumeMounts:
+#        - name: wp-flugelit
+#          mountPath: /var/www/html
+#      initContainers:
+#      - name: wp-flugelit-init
+#        image: us.gcr.io/upandrunning-195715/wp-flugelit:0.4
+#        command: 
+#        - "cp"
+#        - "-a"
+#        - "/var/www/html/."
+#        - "/tmp/workdir/"
+#        volumeMounts:
+#        - name: wp-flugelit
+#          mountPath: /tmp/workdir
+#      volumes:
+#      - name: wp-flugelit
+#        emptyDir: {}

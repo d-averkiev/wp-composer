@@ -4,10 +4,10 @@ Wordpress directory structure was changed to convert default WordPress site into
 The power of this solution lies in the ability to create version-controlled WordPress project where rapid, collaborative theme and plugin development is made easy.
 
 ## Prerequisites
-To run locally:
-Git;
-Docker;
-Read [Managing Your WordPress Site with Git and Composer](https://deliciousbrains.com/storing-wordpress-in-git/) series. Especially parts 2 and 4.
+**To run locally**
+1. Git
+2. Docker
+3. Read [Managing Your WordPress Site with Git and Composer](https://deliciousbrains.com/storing-wordpress-in-git/) series. Especially parts 2 and 4
 
 ## What changed in WordPress structure?
 1. Makes a better directory structure for your WordPress project which looks like this:
@@ -41,8 +41,8 @@ To run project in kuberenetes cluster, you need:
 2. Buid production image:
 `docker build . --build-arg IS_PROD=true -t [HOSTNAME]/[PROJECT-ID]/[IMAGE]:[VERSION]`
 3. Push image to registry
-4. Set image kubernetes deployment manifest /deployments/wp-flugelit-deployment.yaml
-5. Create secret named `wp-flugelit` for keys `user` and `password` (pun database connection credentials there)
+4. Set image into kubernetes deployment manifest /deployments/wp-flugelit-deployment.yaml
+5. Create secret named `wp-flugelit` for keys `user` and `password` (put database connection credentials there)
 6. Create `configmap` named `wp-flugelit` for keys `db_host` and `db_name`
 7. Run deployment
 `kubectl create -f deployments/` 
