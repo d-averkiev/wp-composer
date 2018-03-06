@@ -7,7 +7,7 @@ node {
   def imageTag = ''
 
   stage('Checkout sources') {
-    git changelog: false, poll: false, url: appRepo
+    checkout scm
   }
   
   stage('Build image') {
