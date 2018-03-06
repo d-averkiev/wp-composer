@@ -11,7 +11,7 @@ node {
 
     googleCloudBuild \
       credentialsId: 'iconic-nimbus-197104',
-      request: file('cloudbuild.yaml'),
+      request: file('cloudbuild.yml'),
       substitutions: [
         _TAG: imageTag,
         _PROJECT_REPO: appRepo
