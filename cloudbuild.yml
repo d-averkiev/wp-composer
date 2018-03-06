@@ -1,9 +1,18 @@
-steps:
-- name: 'gcr.io/cloud-builders/git'
-  args:
-  - clone
-  - '$_PROJECT_REPO'
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '--build-arg', 'IS_PROD=true', '-t', '$_TAG', 'wp-composer/'  ]
-images:
-- '$_TAG'
+--- 
+steps: 
+  - 
+    name: gcr.io/cloud-builders/git
+    args: 
+      - clone
+      - $_PROJECT_REPO
+  - 
+    name: gcr.io/cloud-builders/docker
+    args: 
+      - build
+      - "--build-arg"
+      - IS_PROD=true
+      - "-t"
+      - $_TAG
+      - wp-composer/
+images: 
+  - $_TAG

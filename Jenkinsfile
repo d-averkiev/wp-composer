@@ -6,15 +6,15 @@ node {
   def appRepo = 'https://github.com/d-averkiev/wp-composer'
   def imageTag = "us.gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   
-  stage('Checkout source') {
-    git changelog: false, poll: false, url: "${appRepo}"
-  }
-
   stage('Build image') {
-    sh("docker build --build-arg IS_PROD=true -t ${imageTag} .")
-  }
+    def imageTag = 'us.gcr.io/iconic-nimbus-197104/wp-demo'
 
-  stage('Push image to registry') {
-    sh("gcloud docker -- push ${imageTag}")
+    googleCloudBuild \
+      credentialsId: 'iconic-nimbus-197104',
+      request: file('cloudbuild.yaml'),
+      substitutions: [
+        _TAG: imageTag,
+        _PROJECT_REPO: appRepo
+      ]
   }
 }
