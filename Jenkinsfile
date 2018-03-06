@@ -7,7 +7,7 @@ node {
   def imageTag = "us.gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
   
   stage('Build image') {
-    def imageTag = 'us.gcr.io/iconic-nimbus-197104/wp-demo'
+    imageTag = 'us.gcr.io/iconic-nimbus-197104/wp-demo'
 
     googleCloudBuild \
       credentialsId: 'iconic-nimbus-197104',
