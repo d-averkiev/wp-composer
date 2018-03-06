@@ -10,5 +10,5 @@ node {
   git changelog: false, poll: false, url: "${appRepo}"
 
   stage 'Build-Push Docker Image'
-  googleCloudBuild request: file('cloudbuild.yml'), credentialsId: 'jenkins-gsa' ,substitutions: [_TAG: "${imageTag}", _PROJECT_REPO: "${appRepo}"]
+  googleCloudBuild request: file('cloudbuild.yml'), credentialsId: "${project}" ,substitutions: [_TAG: "${imageTag}", _PROJECT_REPO: "${appRepo}"]
 }
