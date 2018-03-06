@@ -25,7 +25,7 @@ node {
   
   stage('Deploy Application') {
     sh("sed -i.bak 's#us.gcr.io/flugelprod/wp-flugelit:0.4#us.gcr.io/flugelprod/wp-flugelit:0.6#' ./k8s/wp-flugelit-deployment.yml")
-    sh("kubectl apply -f k8s/wp-flugelit-service.yml")
-    sh("kubectl apply -f k8s/wp-flugelit-deployment.yml")
+    sh("kubectl apply --namespace=default -f k8s/wp-flugelit-service.yml")
+    sh("kubectl apply --namespace=default -f k8s/wp-flugelit-deployment.yml")
   }
 }
